@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
-    <header className="bg-gray-900 text-gray-100 py-4 px-8 flex justify-between items-center ">
+    <header className=" text-gray-100 py-4 px-8 flex justify-between items-center ">
       {/* Navigation Links */}
       <nav>
         <ul className="flex space-x-6">
@@ -16,7 +16,7 @@ const Header = () => {
 
       {/* Logo */}
       <div className="text-2xl font-bold">
-        <Link to="/" className="hover:text-yellow-400">Cafe Bliss</Link>
+        <Link to="/" className="hover:text-yellow-400">Old Mill Cafe</Link>
       </div>
 
       {/* Search Bar */}
@@ -24,7 +24,7 @@ const Header = () => {
         <input
           type="text"
           placeholder="Search..."
-          className="bg-gray-800 text-gray-100 placeholder-gray-400 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
+          className="text-gray-100 placeholder-gray-400 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
         />
       </div>
     </header>
