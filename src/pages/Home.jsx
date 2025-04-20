@@ -9,6 +9,50 @@ import img2 from "../assets/img2.png";
 import img3 from "../assets/img3.png";
 import img4 from "../assets/img4.png";
 
+const MenuSection = ({ title, items, isOpen, toggleOpen }) => {
+      const variants = {
+      open: {
+        opacity: 1,
+        height: 'auto',
+        transition: { duration: 0.5 },
+      },
+      closed: {
+        opacity: 0,
+        height: 0,
+        transition: { duration: 0.5 },
+      },
+    };
+    return (
+  <div className="mb-12">
+    <h3
+      onClick={toggleOpen}
+      className="text-2xl font-bold text-gray-800 mb-4 cursor-pointer"
+    >
+      {title}
+      <span className="ml-2 text-gray-600">{isOpen ? "▲" : "▼"}</span>
+    </h3>
+    {isOpen && (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {items.map((item, index) => (
+          <div key={index} className="bg-white shadow-md rounded-lg p-6">
+            <img
+              src={item.image}
+              alt={item.title}
+              className="w-full h-40 object-cover rounded-md mb-4"
+            />
+            <h4 className="text-xl font-semibold text-gray-800">
+              {item.title}
+            </h4>
+            <p className="text-gray-600 mt-2">{item.description}</p>
+            <p className="text-gray-800 font-bold mt-4">{item.price}</p>
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+    );
+  };
+
 const Home = () => {
   const [showDrinks, setShowDrinks] = useState(false);
   const [showBreakfast, setShowBreakfast] = useState(false);
@@ -51,6 +95,8 @@ const Home = () => {
       menuSection.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+
 
   return (
     <div className="relative min-h-screen flex flex-col text-gray-100">
@@ -95,109 +141,30 @@ const Home = () => {
 
       {/* Menu Section */}
       <section id="menu" className="bg-gray-100 py-12 px-4 sm:px-8">
-      <div className="max-w-screen-lg mx-auto">
-
-        <h2 className="text-3xl sm:text-4xl font-bold text-center text-gray-800 mb-8">
-          Our Menu
-        </h2>
-
-        {/* Drinks */}
-        <div className="mb-12">
-          <h3
-            onClick={() => setShowDrinks(!showDrinks)}
-            className="text-2xl font-bold text-gray-800 mb-4 cursor-pointer"
-          >
-            Drinks
-            <span className="ml-2 text-gray-600">
-              {showDrinks ? "▲" : "▼"}
-            </span>
-          </h3>
-          {showDrinks && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {drinks.map((item, index) => (
-                <div key={index} className="bg-white shadow-md rounded-lg p-6">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-40 object-cover rounded-md mb-4"
-                  />
-                  <h4 className="text-xl font-semibold text-gray-800">
-                    {item.title}
-                  </h4>
-                  <p className="text-gray-600 mt-2">{item.description}</p>
-                  <p className="text-gray-800 font-bold mt-4">{item.price}</p>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-
-        {/* Breakfast */}
-        <div className="mb-12">
-          <h3
-            onClick={() => setShowBreakfast(!showBreakfast)}
-            className="text-2xl font-bold text-gray-800 mb-4 cursor-pointer"
-          >
-            Breakfast
-            <span className="ml-2 text-gray-600">
-              {showBreakfast ? "▲" : "▼"}
-            </span>
-          </h3>
-          {showBreakfast && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {breakfast.map((item, index) => (
-                <div key={index} className="bg-white shadow-md rounded-lg p-6">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-40 object-cover rounded-md mb-4"
-                  />
-                  <h4 className="text-xl font-semibold text-gray-800">
-                    {item.title}
-                  </h4>
-                  <p className="text-gray-600 mt-2">{item.description}</p>
-                  <p className="text-gray-800 font-bold mt-4">{item.price}</p>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-        <div className="mb-12">
-          <h3 className="text-2xl font-bold text-gray-800 mb-4">Baked Goods</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {bakedGoods.map((item, index) => (
-              <div key={index} className="bg-white shadow-md rounded-lg p-6">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-40 object-cover rounded-md mb-4"
-                />
-                <h4 className="text-xl font-semibold text-gray-800">{item.title}</h4>
-                <p className="text-gray-600 mt-2">{item.description}</p>
-                <p className="text-gray-800 font-bold mt-4">{item.price}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Sweets */}
-        <div className="mb-12">
-          <h3 className="text-2xl font-bold text-gray-800 mb-4">Sweets</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {sweets.map((item, index) => (
-              <div key={index} className="bg-white shadow-md rounded-lg p-6">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-40 object-cover rounded-md mb-4"
-                />
-                <h4 className="text-xl font-semibold text-gray-800">{item.title}</h4>
-                <p className="text-gray-600 mt-2">{item.description}</p>
-                <p className="text-gray-800 font-bold mt-4">{item.price}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+        <div className="max-w-screen-lg mx-auto">
+          <MenuSection
+            title="Drinks"
+            items={drinks}
+            isOpen={showDrinks}
+            toggleOpen={() => setShowDrinks(!showDrinks)}
+          />
+          <MenuSection
+            title="Breakfast"
+            items={breakfast}
+            isOpen={showBreakfast}
+            toggleOpen={() => setShowBreakfast(!showBreakfast)}
+          />
+          <MenuSection
+            title="Baked Goods"
+            items={bakedGoods}
+            isOpen={showBakedGoods}
+            toggleOpen={() => setShowBakedGoods(!showBakedGoods)}
+          />
+          <MenuSection 
+            title="Sweets"
+            items={sweets}
+            isOpen={showSweets}
+            toggleOpen={() => setShowSweets(!showSweets)} />
         </div>
       </section>
     </div>
