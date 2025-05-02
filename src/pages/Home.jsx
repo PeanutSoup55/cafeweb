@@ -23,33 +23,36 @@ const MenuSection = ({ title, items, isOpen, toggleOpen }) => {
       },
     };
     return (
-  <div className="mb-12">
-    <h3
-      onClick={toggleOpen}
-      className="text-2xl font-bold text-gray-800 mb-4 cursor-pointer"
-    >
-      {title}
-      <span className="ml-2 text-gray-600">{isOpen ? "▲" : "▼"}</span>
-    </h3>
-    {isOpen && (
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {items.map((item, index) => (
-          <div key={index} className="bg-white shadow-md rounded-lg p-6">
-            <img
-              src={item.image}
-              alt={item.title}
-              className="w-full h-40 object-cover rounded-md mb-4"
-            />
-            <h4 className="text-xl font-semibold text-gray-800">
-              {item.title}
-            </h4>
-            <p className="text-gray-600 mt-2">{item.description}</p>
-            <p className="text-gray-800 font-bold mt-4">{item.price}</p>
+      <div className="mb-12">
+        <h3
+          onClick={toggleOpen}
+          className="text-2xl font-bold text-gray-800 mb-4 cursor-pointer"
+        >
+          {title}
+          <span className="ml-2 text-gray-600">{isOpen ? "▲" : "▼"}</span>
+        </h3>
+        {isOpen && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {items.map((item, index) => (
+              <div
+                key={index}
+                className="bg-white shadow-md rounded-lg p-6 transition duration-300 transform hover:-translate-y-2 hover:shadow-lg"
+              >
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-40 object-cover rounded-md mb-4"
+                />
+                <h4 className="text-xl font-semibold text-gray-800">
+                  {item.title}
+                </h4>
+                <p className="text-gray-600 mt-2">{item.description}</p>
+                <p className="text-gray-800 font-bold mt-4">{item.price}</p>
+              </div>
+            ))}
           </div>
-        ))}
+        )}
       </div>
-    )}
-  </div>
     );
   };
 
@@ -99,7 +102,7 @@ const Home = () => {
 
 
   return (
-    <div className="relative min-h-screen flex flex-col text-gray-100">
+    <div className="relative min-h-screen flex flex-col text-gray-100 overscroll-none">
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center -z-10"
